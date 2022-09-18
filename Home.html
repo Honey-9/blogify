@@ -1,105 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Blogify</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Blooger</title>
 
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="./css/all.css">
-
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Asap:400,700);
+      @import url(https://fonts.googleapis.com/css?family=Bree+Serif&subset=latin-ext,latin);
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: greyscale;
+      }
+      body {
+        background: #e9f0f4;
+      }
+      .newPost {
+        margin: 50px auto;
+        padding: 50px 40px;
+        width: 100%;
+        max-width: 800px;
+        min-width: 480px;
+        background: #fff;
+        font-family: "Asap", sans-serif;
+      }
+      .newPost h3 {
+        margin: 0px 0px 20px 0px;
+        font-size: 30px;
+        color: #2e3641;
+      }
+      .newPost input[type="text"] {
+        padding-left: 15px;
+        width: 100%;
+        height: 45px;
+        border: 1px solid #c1cfd9;
+        box-shadow: inset 0px 0px 3px #c1cfd9;
+        outline: none;
+        font-family: "Bree Serif", serif;
+        font-size: 24px;
+        color: #c1cfd9;
+        margin-bottom: 20px;
+      }
+      .newPost .toolbar {
+        background: #2e3641;
+      }
+      .newPost .toolbar button {
+        float: left;
+        width: 45px;
+        height: 45px;
+        background: #2e3641;
+        border: none;
+        border-right: 1px solid #434f5f;
+        color: #c1cfd9;
+        outline: none;
+      }
+      .newPost .toolbar button:hover {
+        background: #394250;
+        color: #b1c3cf;
+      }
+      .newPost .toolbar .customSelect {
+        float: right;
+        position: relative;
+      }
+      .newPost .toolbar .customSelect select {
+        appearance: none;
+        border-radius: 0;
+        border: none;
+        background: #2e3641;
+        height: 45px;
+        padding-left: 10px;
+        padding-right: 25px;
+        color: #c1cfd9;
+        border-left: 1px solid #434f5f;
+        outline: none;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .newPost .toolbar .customSelect select:hover {
+        background: #394250;
+        color: #b1c3cf;
+      }
+      .newPost .toolbar .customSelect:after {
+        content: "\f0dc";
+        font-family: FontAwesome;
+        color: #c1cfd9;
+        position: absolute;
+        right: 10px;
+        top: 15px;
+      }
+      .newPost .toolbar:after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+      .newPost .editor {
+        min-height: 300px;
+        width: 100%;
+        resize: none;
+        border: 1px solid #c1cfd9;
+        box-shadow: inset 0px 0px 3px #c1cfd9;
+        outline: none;
+        padding: 15px;
+        margin-bottom: 20px;
+        position: relative;
+      }
+      .newPost .editor .saved {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        display: block;
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
+        text-align: center;
+        color: #fff;
+        text-transform: uppercase;
+        background: #c1cfd9;
+        font-weight: bold;
+        border-top-left-radius: 15px;
+      }
+      .newPost .buttons {
+        float: right;
+      }
+      .newPost .buttons button {
+        float: left;
+        width: 120px;
+        height: 45px;
+        border: none;
+        color: #fff;
+        text-transform: uppercase;
+        outline: none;
+        margin-right: 20px;
+        font-weight: bold;
+        background: #c1cfd9;
+        text-decoration: none;
+      }
+      .newPost .buttons button:last-of-type {
+        margin-right: 0px;
+        background: #f97e76;
+      }
+      .newPost .buttons button:last-of-type:hover {
+        background: #fa958e;
+      }
+      .newPost .buttons button:active {
+        box-shadow: inset 0px 4px rgba(0, 0, 0, 0.05);
+      }
+      .newPost .buttons button:hover {
+        background: #d1dbe3;
+      }
+      .newPost .buttons:after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+      .newPost:after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+    </style>
+    <link rel="stylesheet" href="./css/all.css" />
 
     <!-- --------- Owl-Carousel ------------------->
-    <link rel="stylesheet" href="./css/owl.carousel.min.css">
-    <link rel="stylesheet" href="./css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="./css/owl.theme.default.min.css" />
 
     <!-- ------------ AOS Library ------------------------- -->
-    <link rel="stylesheet" href="./css/aos.css">
+    <link rel="stylesheet" href="./css/aos.css" />
 
     <!-- Custom Style   -->
-    <link rel="stylesheet" href="./css/Style.css">
-    <style>
-        input[type=text], select, textarea{
-  width: 100%;
-  height: 100%;
-  padding: 12px;
-  border: 5px solid rgb(27, 26, 26);
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-input[type=submit] {
-  background-color: #04AA6D;
-  color: rgb(110, 15, 15);
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-    </style>
+    <link rel="stylesheet" href="./css/Style.css" />
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <!-- ----------------------------  Navigation ---------------------------------------------- -->
 
     <nav class="nav">
-        <div class="nav-menu flex-row">
-            <div class="nav-brand">
-                <a href="#" class="text-gray">Blogify</a>
-            </div>
-            <div class="toggle-collapse">
-                <div class="toggle-icons">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </div>
-            <div>
-                <ul class="nav-items">
-                    <li class="nav-link">
-                        <a href="Index.html">Home</a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">Category</a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">Archive</a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">Pages</a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="ContactUs.html">Contact Us</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="social text-gray">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
+      <div class="nav-menu flex-row">
+        <div class="nav-brand">
+          <a href="#" class="text-gray">Blooger</a>
         </div>
+        <div class="toggle-collapse">
+          <div class="toggle-icons">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+        <div>
+          <ul class="nav-items">
+            <li class="nav-link">
+              <a href="Index.html">Home</a>
+            </li>
+            <li class="nav-link">
+              <a href="#">Category</a>
+            </li>
+            <li class="nav-link">
+              <a href="#">Archive</a>
+            </li>
+            <li class="nav-link">
+              <a href="#">Pages</a>
+            </li>
+            <li class="nav-link">
+              <a href="ContactUs.html">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+        <div class="social text-gray">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
     </nav>
     <main>
+      <!------------------------ Site Title ---------------------->
 
-        <!------------------------ Site Title ---------------------->
+      <div class="newPost">
+        <h3>Add New Blog</h3>
+        <input type="text" placeholder="Enter title here" />
+        <div class="toolbar">
+          <button type="button" data-func="bold">
+            <i class="fa fa-bold"></i>
+          </button>
+          <button type="button" data-func="italic">
+            <i class="fa fa-italic"></i>
+          </button>
+          <button type="button" data-func="underline">
+            <i class="fa fa-underline"></i>
+          </button>
+          <button type="button" data-func="justifyleft">
+            <i class="fa fa-align-left"></i>
+          </button>
+          <button type="button" data-func="justifycenter">
+            <i class="fa fa-align-center"></i>
+          </button>
+          <button type="button" data-func="justifyright">
+            <i class="fa fa-align-right"></i>
+          </button>
+          <button type="button" data-func="insertunorderedlist">
+            <i class="fa fa-list-ul"></i>
+          </button>
+          <button type="button" data-func="insertorderedlist">
+            <i class="fa fa-list-ol"></i>
+          </button>
+          <div class="customSelect">
+            <select data-func="fontname">
+              <optgroup label="Serif Fonts">
+                <option value="Bree Serif">Bree Serif</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Palatino Linotype">Palatino Linotype</option>
+                <option value="Times New Roman">Times New Roman</option>
+              </optgroup>
+              <optgroup label="Sans Serif Fonts">
+                <option value="Arial">Arial</option>
+                <option value="Arial Black">Arial Black</option>
+                <option value="Asap" selected>Asap</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+                <option value="Impact">Impact</option>
+                <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                <option value="Tahoma">Tahoma</option>
+                <option value="Trebuchet MS">Trebuchet MS</option>
+                <option value="Verdana">Verdana</option>
+              </optgroup>
+              <optgroup label="Monospace Fonts">
+                <option value="Courier New">Courier New</option>
+                <option value="Lucida Console">Lucida Console</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="customSelect">
+            <select data-func="formatblock">
+              <option value="h1">Heading 1</option>
+              <option value="h2">Heading 2</option>
+              <option value="h4">Subtitle</option>
+              <option value="p" selected>Paragraph</option>
+            </select>
+          </div>
+        </div>
+        <div class="editor" contenteditable></div>
+        <div class="buttons">
+          <!--<button type="button">save draft</button>-->
+          <button data-func="clear" type="button">clear</button>
+          <!-- <button data-func="save" type="button">save</button> -->
+          <button onclick="myFunction()">Save</button>
+        </div>
+      </div>
+    </main>
 
-        <div>
-                <form id="#formb">
-                    <input type="text" placeholder="Type here...">
-                    <br>
-                    <br>
-                    <br>
-                <center>
-                    <input type="Submit" value="Submit Your Blog" onclick="alert('Your blog has been posted')" />
-                 </center>
-                </form>
-            </div>
-        </main>
-
-
-</body>
-
+    <script src="./js/editor.js"></script>
+    <script>
+      function myFunction() {
+        alert("Your blog has been posted!");
+      }
+    </script>
+  </body>
 </html>
